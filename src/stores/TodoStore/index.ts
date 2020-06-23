@@ -26,12 +26,12 @@ class TodoStore {
   }
 
   @action.bound
-  setGetTodoListAPIStatus(status) {
+  setGetTodoListAPIStatus(status: number) {
     this.getTodoListAPIStatus = status
   }
 
   @action.bound
-  setGetTodoListAPIError(error) {
+  setGetTodoListAPIError(error: Error | null) {
     this.getTodoListAPIError = error
   }
 

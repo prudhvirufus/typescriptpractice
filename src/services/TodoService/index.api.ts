@@ -28,7 +28,10 @@ class TodoAPIService implements TodoService {
     )
   }
 
-  async updateTodoCompletionAPI(requestObject) {
+  async updateTodoCompletionAPI(requestObject: {
+    id: string
+    is_completed: boolean
+  }) {
     return networkCallWithApisauce(
       this.api,
       endpoints.todos.updateCompletion,
