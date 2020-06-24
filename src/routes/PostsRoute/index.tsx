@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
 import LoadingWrapperWithFailure from '../../components/common/LoadingWrapperWithFailure'
-
+import TodoFooter from '../../components/TodoFooter'
 import PostStore from '../../stores/PostStore'
-
-import {} from './styledComponents'
+import { PostsWrapper } from './styledComponents'
+import PostList from '../../components/PostList'
 
 interface PostsRouteProps {}
 
@@ -16,64 +16,45 @@ interface InjectedProps extends PostsRouteProps {
 @inject('postStore')
 @observer
 class PostsRoute extends Component<PostsRouteProps> {
-  constructor(props) {
+  constructor(props: Readonly<PostsRouteProps>) {
     super(props)
   }
 
   componentDidMount() {
-    this.getTodos()
+    this.getPosts()
   }
 
   getInjectedProps = (): InjectedProps => this.props as InjectedProps
 
-  getTodoStore = () => {
-    return this.getInjectedProps().todoStore
+  getPostStore = () => {
+    return this.getInjectedProps().postStore
   }
 
-  getTodos = () => {
-    this.getTodoStore().getTodoList()
-  }
-
-  onAddTodo = (todoInput: string) => {
-    this.getTodoStore().addNewTodo(todoInput)
-  }
-
-  getCurrentTodo = () => {
-    const userInput = this.todoInputRef.current?.getUserInput()
-    if (userInput) {
-      this.onAddTodo(userInput)
-    }
+  getPosts = () => {
+    this.getPostStore().getPostList()
   }
 
   renderSuccessUI = observer(() => {
-    const { todos, todosLeftCount } = this.getTodoStore()
+    const { posts, totalPosts } = this.getPostStore()
     return (
-      <TodosWrapper>
-        <RefDemoButton onClick={this.getCurrentTodo}>
-          Add current todo
-        </RefDemoButton>
-        <UserInput
-          ref={this.todoInputRef}
-          onAddInput={this.onAddTodo}
-          buttonText='Add Todo'
-        />
-        <TodoList todos={todos} />
-        <TodoFooter todosLeftCount={todosLeftCount} />
-      </TodosWrapper>
+      <PostsWrapper>
+        <PostList posts={posts} />
+        <TodoFooter todosLeftCount={totalPosts} />
+      </PostsWrapper>
     )
   })
 
   render() {
-    const { getTodoListAPIStatus, getTodoListAPIError } = this.getTodoStore()
+    const { getPostsListAPIStatus, getPostsListAPIError } = this.getPostStore()
     return (
       <LoadingWrapperWithFailure
-        apiStatus={getTodoListAPIStatus}
-        apiError={getTodoListAPIError}
-        onRetry={this.getTodos}
+        apiStatus={getPostsListAPIStatus}
+        apiError={getPostsListAPIError}
+        onRetry={this.getPosts}
         renderSuccessUI={this.renderSuccessUI}
       />
     )
   }
 }
 
-export default TodosRoute
+export default PostsRoute

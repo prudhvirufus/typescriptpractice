@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 import ReactLogo from '../../components/common/Icons/ReactLogo'
 import {
   SAMPLE_ROUTE_PATH,
-  TODOS_ROUTE_PATH
+  TODOS_ROUTE_PATH,
+  POSTS_ROUTE_PATH
 } from '../../constants/NavigationConstants'
 
 import './index.css'
@@ -27,6 +28,7 @@ function HomeRoute() {
         </a>
         <Link to={SAMPLE_ROUTE_PATH}>Sample Route</Link>
         <Link to={TODOS_ROUTE_PATH}>Todos</Link>
+        <Link to={POSTS_ROUTE_PATH}>Posts</Link>
       </header>
     </div>
   )

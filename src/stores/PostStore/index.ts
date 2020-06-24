@@ -42,6 +42,7 @@ class PostStore {
       this.posts = response.posts.map(post => {
         return new PostModel(post)
       })
+      this.totalPosts = response.total
     }
   }
 
