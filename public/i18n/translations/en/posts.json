@@ -1,0 +1,10 @@
+{
+  "names": {
+    "prudhvi": "Prudhvi raj rufus"
+  },
+  "cars": {
+    "carsLeft": "one car left",
+    "carsLeft_plural": "{{cars}} cars left",
+    "blasted": "you have blasted {{blasted}} cars  hurry..............."
+  }
+}
