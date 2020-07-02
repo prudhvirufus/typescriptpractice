@@ -64,5 +64,4 @@ class PostsRoute extends Component<PostsRouteProps> {
     )
   }
 }
-
 export default withTranslation('translation', { withRef: true })(PostsRoute)

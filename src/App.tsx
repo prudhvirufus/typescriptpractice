@@ -23,7 +23,7 @@ const App = () => {
   return (
     <Provider {...stores}>
       <I18nextProvider i18n={i18n}>
-        <Suspense fallback={<div />}>
+        <Suspense fallback={<div>Loading...</div>}>
           <Router basename={process.env.PUBLIC_URL}>
             <Switch>
               <Route path={POSTS_ROUTE_PATH}>
